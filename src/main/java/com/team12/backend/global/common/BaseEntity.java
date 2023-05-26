@@ -1,6 +1,8 @@
 package com.team12.backend.global.common;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import lombok.Getter;
@@ -12,6 +14,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 public class BaseEntity {
-    @CreatedDate private LocalDateTime createAt;
-    @LastModifiedDate private LocalDateTime updateAt;
+
+    @CreatedDate
+    @Column(updatable = false)
+    protected String createAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"));
+
+    @LastModifiedDate
+    protected String updateAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"));
+
 }

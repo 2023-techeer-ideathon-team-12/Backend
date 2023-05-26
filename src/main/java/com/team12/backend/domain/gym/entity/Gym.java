@@ -1,18 +1,19 @@
 package com.team12.backend.domain.gym.entity;
 
 import com.sun.istack.NotNull;
+import com.team12.backend.domain.review.entity.Reviews;
 import com.team12.backend.global.common.BaseEntity;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import javax.persistence.*;
+
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,41 +26,46 @@ public class Gym extends BaseEntity {
     private Long id;
 
     @Column(name = "gym_name")
-    @NotNull
+//    @NotNull
     private String name;
 
     @Column
-    @NotNull
+//    @NotNull
     @ColumnDefault("0")
     private String address;
 
     @Column(name = "currentUser_number")
-    @NotNull
+//    @NotNull
     private Integer currentUser;
 
     @Column
-    @NotNull
+//    @NotNull
     private Integer area;
 
     @Column
-    @NotNull
+//    @NotNull
     private String machine;
 
-    @Column
+//    @Column
     @NotNull
     private Double starAvg;
 
     @Column
-    @NotNull
+//    @NotNull
     private String thumbnailUrl;
 
     @Column(name = "gym_latitude")
-    @NotNull
+//    @NotNull
     private Double latitude;
 
     @Column(name = "gym_longitude")
-    @NotNull
+//    @NotNull
     private Double longitude;
+
+
+    @OneToMany(mappedBy = "gym", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Reviews> reviews ;
+
 
     @Builder
     public Gym(
