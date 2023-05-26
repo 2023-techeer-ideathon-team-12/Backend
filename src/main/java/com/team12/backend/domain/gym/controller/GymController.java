@@ -52,15 +52,10 @@ public class GymController {
         return ResponseEntity.ok(responseDto);
     }
 
-    @PostMapping("/current")
-    public ResponseEntity<List<Gym>> getCurrentLocation(@RequestBody LocationDto locationDto) {
-        double plusLatitude = locationDto.getLatitude() + 500;
-        double plusLongitude = locationDto.getLongitude() + 500;
-        double minusLatitude = locationDto.getLatitude() - 500;
-        double minusLongitude = locationDto.getLongitude() - 500;
+    @GetMapping
+    public ResponseEntity<List<ResponseDto>> getAllGyms() {
+        List<ResponseDto> responseDtos = gymService.getAllGyms();
 
-        List<Gym> gyms = gymService.getGymsByLocationRange(plusLatitude, plusLongitude, minusLatitude, minusLongitude);
-
-        return ResponseEntity.ok(gyms);
+        return ResponseEntity.ok(responseDtos);
     }
 }

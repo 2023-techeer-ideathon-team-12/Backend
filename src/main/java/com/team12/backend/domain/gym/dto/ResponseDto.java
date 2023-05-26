@@ -18,5 +18,6 @@ public class ResponseDto {
     private String thumbnailUrl;
     private Double latitude;
     private Double longitude;
+    private String status;
 
 }

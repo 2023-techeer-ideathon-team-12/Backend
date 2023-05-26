@@ -62,7 +62,6 @@ public class Gym extends BaseEntity {
 //    @NotNull
     private Double longitude;
 
-
     @OneToMany(mappedBy = "gym", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Reviews> reviews ;
 
