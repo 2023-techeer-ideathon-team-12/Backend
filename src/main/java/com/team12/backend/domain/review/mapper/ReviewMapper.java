@@ -34,7 +34,7 @@ public class ReviewMapper {
 
     public ReviewListResponseDto fromListEntity(Reviews reviews){
         return ReviewListResponseDto.builder()
-//                .reviewId(reviews.getReviewId())
+                .reviewId(reviews.getReviewId())
 //                .gymId(reviews.getGym().getId())  // 체육관 id 가져오기
                 .content(reviews.getContent())
                 .star(reviews.getStar())

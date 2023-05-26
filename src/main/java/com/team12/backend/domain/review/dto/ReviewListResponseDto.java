@@ -9,6 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class ReviewListResponseDto {
 
+    private Long reviewId;
     private String content;
 
     private int star;
