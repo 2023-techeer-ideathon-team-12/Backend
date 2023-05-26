@@ -87,4 +87,8 @@ public class Gym extends BaseEntity {
     public void increaseCurrentUser() {
         this.currentUser += 1;
     }
+
+    public void decreaseCurrentUser() {
+        this.currentUser -= 1;
+    }
 }
