@@ -26,8 +26,8 @@ public class ReviewMapper {
                 .gymId(reviews.getGym().getId())  // 체육관 id 가져오기
                 .content(reviews.getContent())
                 .star(reviews.getStar())
-                .createAt(reviews.getCreateAt() != null ? reviews.getCreateAt().toString() : null)
-                .updateAt(reviews.getUpdateAt() != null ? reviews.getUpdateAt().toString() : null)
+                .createAt(reviews.getCreatedAt() != null ? reviews.getCreatedAt().toString() : null)
+                .updateAt(reviews.getUpdatedAt() != null ? reviews.getUpdatedAt().toString() : null)
                 .build();
     }
 
@@ -38,7 +38,7 @@ public class ReviewMapper {
 //                .gymId(reviews.getGym().getId())  // 체육관 id 가져오기
                 .content(reviews.getContent())
                 .star(reviews.getStar())
-                .createAt(reviews.getCreateAt() != null ? reviews.getCreateAt().toString() : null)
+                .createAt(reviews.getCreatedAt() != null ? reviews.getCreatedAt().toString() : null)
 //                .updateAt(reviews.getUpdateAt() != null ? reviews.getUpdateAt().toString() : null)
                 .build();
     }

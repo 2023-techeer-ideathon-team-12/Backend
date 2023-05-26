@@ -6,18 +6,15 @@ spring:
     password: dayon0325
 
   jpa:
-    show-sql: true
     hibernate:
+      show-sql: true
       ddl-auto: update
     properties:
       hibernate:
         format_sql: true
 
+
   server:
     port: 8080
 
 
-logging:
-  level:
-      hibernate: info
-    org:
