@@ -96,4 +96,7 @@ public class Gym extends BaseEntity {
     public void decreaseCurrentUser() {
         this.currentUser -= 1;
     }
+    public void setStarAvg(Double starAvg) {
+        this.starAvg = starAvg;
+    }
 }
