@@ -1,20 +1,17 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/gyms
+    url: jdbc:mysql://localhost:3306/umc?serverTimezone=Asia/Seoul
     username: root
-    password: qorgksruf123
+    password: dayon0325
 
   jpa:
+    show-sql: true
     hibernate:
-      ddl-auto : create
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
-        use_sql_comments: true
-    show_sql: true
 
-logging:
-  level:
-    org:
-      hibernate: info
+  server:
+    port: 8080

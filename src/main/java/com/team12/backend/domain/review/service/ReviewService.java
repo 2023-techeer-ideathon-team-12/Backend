@@ -37,8 +37,25 @@ public class ReviewService {
         Gym findGym = optionalGym.orElse(null);
 
         Reviews reviews = reviewMapper.toEntity(reviewRequestDto, findGym);
+        reviewRepository.save(reviews);
 
-        return reviewRepository.save(reviews);
+        updateGymStarAvg(findGym); // Update gym's starAvg value
+
+        return reviews;
+    }
+
+    private void updateGymStarAvg(Gym gym) {
+        List<Reviews> reviews = reviewRepository.findByGym(gym);
+        double totalStars = 0;
+        int count = reviews.size();
+
+        for (Reviews review : reviews) {
+            totalStars += review.getStar();
+        }
+
+        double starAvg = count > 0 ? totalStars / count : 0;
+        gym.setStarAvg(starAvg);
+        gymRepository.save(gym);
     }
 
 
