@@ -37,8 +37,25 @@ public class ReviewService {
         Gym findGym = optionalGym.orElse(null);
 
         Reviews reviews = reviewMapper.toEntity(reviewRequestDto, findGym);
+        reviewRepository.save(reviews);
 
-        return reviewRepository.save(reviews);
+        updateGymStarAvg(findGym); // Update gym's starAvg value
+
+        return reviews;
+    }
+
+    private void updateGymStarAvg(Gym gym) {
+        List<Reviews> reviews = reviewRepository.findByGym(gym);
+        double totalStars = 0;
+        int count = reviews.size();
+
+        for (Reviews review : reviews) {
+            totalStars += review.getStar();
+        }
+
+        double starAvg = count > 0 ? totalStars / count : 0;
+        gym.setStarAvg(starAvg);
+        gymRepository.save(gym);
     }
 
 
@@ -46,12 +63,12 @@ public class ReviewService {
     @Transactional(readOnly = true)
     public List<ReviewListResponseDto> getAllReviewsByGymId(Long gymId) {
         Gym gym = gymRepository.findById(gymId)
-                .orElseThrow(() -> new NoSuchElementException("No gym found"));
+            .orElseThrow(() -> new NoSuchElementException("No gym found"));
 
         List<Reviews> reviews = reviewRepository.findByGym(gym);
         return reviews.stream()
-                .map(reviewMapper::fromListEntity)
-                .collect(Collectors.toList());
+            .map(reviewMapper::fromListEntity)
+            .collect(Collectors.toList());
     }
 
     // 리뷰 수정하기
@@ -75,7 +92,7 @@ public class ReviewService {
     @Transactional
     public void deleteReviewById(Long reviewId) {
         Reviews review = reviewRepository.findById(reviewId)
-                .orElseThrow(() -> new NoSuchElementException("No review found"));
+            .orElseThrow(() -> new NoSuchElementException("No review found"));
 
         reviewRepository.delete(review);
     }
@@ -98,3 +115,4 @@ public class ReviewService {
 
 
 }
+    
